@@ -19,7 +19,7 @@ data = {}
 dates = [f[:10].replace("_","-") for f in files]
 for c in countries:
   data[c] = []
-  for f in files:
+  for f in sorted_files:
     df = pd.read_csv(DATA_PATH+f)
     value = df.loc[df["country"] == c]["percent inoculated"].values[0]
     data[c].append(value)
