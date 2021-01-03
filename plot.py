@@ -16,7 +16,7 @@ sorted_files = sorted(files,
 countries = pd.read_csv(DATA_PATH+files[-1]).head()["country"]
 
 data = {}
-dates = [f[:10].replace("_","-") for f in files]
+dates = [f[:10].replace("_","-") for f in sorted_files]
 for c in countries:
   data[c] = []
   for f in sorted_files:
