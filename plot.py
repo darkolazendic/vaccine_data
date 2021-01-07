@@ -13,7 +13,7 @@ sorted_files = sorted(files,
 
 
 # pull top 5 countries from the latest data:
-countries = pd.read_csv(DATA_PATH+files[-1]).head()["country"]
+countries = pd.read_csv(DATA_PATH+sorted_files[-1]).head()["country"]
 
 data = {}
 dates = [f[:10].replace("_","-") for f in sorted_files]
@@ -21,7 +21,10 @@ for c in countries:
   data[c] = []
   for f in sorted_files:
     df = pd.read_csv(DATA_PATH+f)
-    value = df.loc[df["country"] == c]["percent inoculated"].values[0]
+    try:
+      value = df.loc[df["country"] == c]["percent inoculated"].values[0]
+    except:
+      value = 0
     data[c].append(value)
 
 for c in countries:
